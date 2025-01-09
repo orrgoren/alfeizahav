@@ -1,6 +1,3 @@
-import { format, formatRelative } from "date-fns";
-import { he } from "date-fns/locale";
-
 import { client } from "@/sanity/lib/client";
 import { Post } from "@/lib/interface";
 import Image from "next/image";
