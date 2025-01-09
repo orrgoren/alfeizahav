@@ -30,6 +30,10 @@ export default function RootLayout({
         >
           <Navbar />
           <main className="max-w-4xl mx-auto px-4">{children}</main>
+          <footer className="my-4 flex items-center justify-center w-full font-semibold text-sm text-gray-500 z-11">
+            &copy; 2025 אלפי<span className="text-primary">זהב</span>. כל
+            הזכויות שמורות.
+          </footer>
         </ThemeProvider>
       </body>
     </html>

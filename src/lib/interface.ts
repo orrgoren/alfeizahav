@@ -4,6 +4,7 @@ export interface ShortPost {
   author: any;
   description: string;
   image: any;
+  publishedAt: any;
 }
 
 export interface Post {
@@ -12,4 +13,5 @@ export interface Post {
   author: any;
   body: any;
   image: any;
+  publishedAt: any;
 }
