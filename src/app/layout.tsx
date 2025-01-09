@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
@@ -44,6 +45,7 @@ export default function RootLayout({
           </footer>
         </ThemeProvider>
       </body>
+      <GoogleAnalytics gaId="G-5QBNK188V9" />
     </html>
   );
 }
