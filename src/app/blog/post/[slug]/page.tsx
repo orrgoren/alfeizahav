@@ -1,9 +1,15 @@
+import type { Metadata, ResolvingMetadata } from "next";
+
 import { client } from "@/sanity/lib/client";
 import { Post } from "@/lib/interface";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import Avatar from "@/components/avatar";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
 async function getBlog(slug: string) {
   const query = `
@@ -20,11 +26,28 @@ async function getBlog(slug: string) {
   return await client.fetch(query);
 }
 
-export default async function BlogPost({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  // read route params
+  const slug = (await params).slug;
+
+  // fetch data
+  const post = await getBlog(slug);
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${post.title} | אלפיזהב`,
+    openGraph: {
+      images: [urlFor(post.image).url(), ...previousImages],
+    },
+  };
+}
+
+export default async function BlogPost({ params }: Props) {
   const { slug } = await params;
   const post: Post = await getBlog(slug);
 
