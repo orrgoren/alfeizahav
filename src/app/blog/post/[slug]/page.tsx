@@ -1,11 +1,11 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from 'next';
 
-import { client } from "@/sanity/lib/client";
-import { Post } from "@/lib/interface";
-import Image from "next/image";
-import { urlFor } from "@/sanity/lib/image";
-import { PortableText } from "@portabletext/react";
-import Avatar from "@/components/avatar";
+import { client } from '@/sanity/lib/client';
+import { Post } from '@/lib/interface';
+import Image from 'next/image';
+import { urlFor } from '@/sanity/lib/image';
+import { PortableText } from '@portabletext/react';
+import Avatar from '@/components/avatar';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -18,6 +18,7 @@ async function getBlog(slug: string) {
       title,
       body,
       image,
+      description,
       author->,
       publishedAt
     }[0]
@@ -34,7 +35,7 @@ export async function generateMetadata(
   const slug = (await params).slug;
 
   // fetch data
-  const post = await getBlog(slug);
+  const post: Post = await getBlog(slug);
 
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];
@@ -44,6 +45,7 @@ export async function generateMetadata(
     openGraph: {
       images: [urlFor(post.image).url(), ...previousImages],
     },
+    description: post.description,
   };
 }
 
@@ -54,7 +56,7 @@ export default async function BlogPost({ params }: Props) {
   return (
     <div className="mt-8">
       <h1>
-        <span className="block text-4xl text-center leading-8 font-bold tracking-tight sm:text-5xl">
+        <span className="block text-center text-4xl font-bold leading-8 tracking-tight sm:text-5xl">
           {post.title}
         </span>
       </h1>
@@ -65,12 +67,12 @@ export default async function BlogPost({ params }: Props) {
         width={900}
         height={800}
         priority
-        className="rounded-lg mt-6 border mx-auto"
+        className="mx-auto mt-6 rounded-lg border"
       />
 
       <Avatar author={post.author} publishedAt={post.publishedAt} />
 
-      <div className="mt-4 mb-12 prose-lg prose-yellow dark:prose-invert prose-headings:font-bold prose-headings:text-2xl prose-li:marker:text-primary prose-a:text-primary prose-a:underline">
+      <div className="prose-lg prose-yellow mb-12 mt-4 dark:prose-invert prose-headings:text-2xl prose-headings:font-bold prose-a:text-primary prose-a:underline prose-li:marker:text-primary">
         <PortableText value={post.body} />
       </div>
     </div>
