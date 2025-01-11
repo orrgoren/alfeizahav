@@ -13,7 +13,8 @@ const rubik = Rubik({
 
 export const metadata: Metadata = {
   title: 'אלפיזהב - בלוג השקעות, טכנולוגיה וחיים',
-  description: 'אלפיזהב - בלוג השקעות, טכנולוגיה וחיים',
+  description:
+    'אלפיזהב - בלוג שמשלב השקעות חכמות, טכנולוגיה פורצת דרך ותובנות לחיים עם ערך. כי העתיד שלכם מתחיל כאן!',
   robots: 'index, follow',
   keywords:
     'בלוג, אלפיזהב, השקעות, טכנולוגיה, blog, alfeizahav, tech, technology, investments, stock market',
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
     siteName: 'אלפיזהב - בלוג השקעות, טכנולוגיה וחיים',
     locale: 'he',
     type: 'website',
+    description:
+      'אלפיזהב - בלוג שמשלב השקעות חכמות, טכנולוגיה פורצת דרך ותובנות לחיים עם ערך. כי העתיד שלכם מתחיל כאן!',
   },
 };
 

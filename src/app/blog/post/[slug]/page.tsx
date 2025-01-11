@@ -44,6 +44,7 @@ export async function generateMetadata(
     title: `${post.title} | אלפיזהב`,
     openGraph: {
       images: [urlFor(post.image).url(), ...previousImages],
+      description: post.description,
     },
     description: post.description,
   };
