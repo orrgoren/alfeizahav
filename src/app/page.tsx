@@ -1,6 +1,7 @@
-import { ShortPost } from "@/lib/interface";
-import { client } from "@/sanity/lib/client";
-import PostCard from "@/components/post-card";
+import { ShortPost } from '@/lib/interface';
+import { client } from '@/sanity/lib/client';
+import PostCard from '@/components/post-card';
+import { Metadata } from 'next';
 
 async function getData() {
   const query = `
@@ -17,11 +18,27 @@ async function getData() {
   return await client.fetch(query);
 }
 
+export const metadata: Metadata = {
+  title: 'אלפיזהב - בלוג השקעות, טכנולוגיה וחיים',
+  description:
+    'אלפיזהב - בלוג שמשלב השקעות חכמות, טכנולוגיה פורצת דרך ותובנות לחיים עם ערך. כי העתיד שלכם מתחיל כאן!',
+  robots: 'index, follow',
+  keywords:
+    'בלוג, אלפיזהב, השקעות, טכנולוגיה, blog, alfeizahav, tech, technology, investments, stock market',
+  openGraph: {
+    siteName: 'אלפיזהב - בלוג השקעות, טכנולוגיה וחיים',
+    locale: 'he',
+    type: 'website',
+    description:
+      'אלפיזהב - בלוג שמשלב השקעות חכמות, טכנולוגיה פורצת דרך ותובנות לחיים עם ערך. כי העתיד שלכם מתחיל כאן!',
+  },
+};
+
 export default async function Home() {
   const data: ShortPost[] = await getData();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden my-6 gap-5 p-8">
+    <div className="my-6 grid grid-cols-1 gap-5 overflow-hidden p-8 md:grid-cols-2">
       {data.map((post, idx) => (
         <PostCard key={idx} post={post} />
       ))}
