@@ -1,21 +1,44 @@
 'use client';
 
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu';
+
 import { signIn, signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 export default function LoginButton() {
   const { data: session } = useSession();
+
   if (session) {
     return (
-      <div>
-        Signed in as {session.user?.name} using {session.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-      </div>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>שלום {session.user?.name}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuItem>
+                <Link href="#" onClick={() => signOut()} legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    התנתק
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
     );
   }
   return (
     <div>
-      Not signed in <br />
-      <button onClick={() => signIn('google')}> Sign in </button>
+      <button onClick={() => signIn('google')}> התחבר</button>
     </div>
   );
 }

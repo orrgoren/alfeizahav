@@ -13,9 +13,10 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <ModeToggle />
-
-      <LoginButton />
+      <div>
+        <ModeToggle />
+        <LoginButton />
+      </div>
     </nav>
   );
 }
