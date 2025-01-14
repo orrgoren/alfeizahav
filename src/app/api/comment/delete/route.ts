@@ -3,7 +3,7 @@ import { getToken } from 'next-auth/jwt';
 import { headers } from 'next/headers';
 import redis from '../../lib/redis';
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const headersList = await headers();
   const token = await getToken({ req });
   const referer = headersList.get('referer');
