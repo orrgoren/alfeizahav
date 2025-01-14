@@ -7,6 +7,7 @@ import { urlFor } from '@/sanity/lib/image';
 import { PortableText } from '@portabletext/react';
 import Avatar from '@/components/avatar';
 import CommentSection from '@/components/comment-section';
+import Head from 'next/head';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -56,29 +57,34 @@ export default async function BlogPost({ params }: Props) {
   const post: Post = await getBlog(slug);
 
   return (
-    <div className="mt-8">
-      <h1>
-        <span className="block text-center text-4xl font-bold leading-8 tracking-tight sm:text-5xl">
-          {post.title}
-        </span>
-      </h1>
+    <div>
+      <Head>
+        <link rel="canonical" href={`https://www.alfeizahav.blog/blog/post/${slug}`} />
+      </Head>
+      <div className="mt-8">
+        <h1>
+          <span className="block text-center text-4xl font-bold leading-8 tracking-tight sm:text-5xl">
+            {post.title}
+          </span>
+        </h1>
 
-      <Image
-        src={urlFor(post.image).url()}
-        alt={post.title}
-        width={900}
-        height={800}
-        priority
-        className="mx-auto mt-6 rounded-lg border"
-      />
+        <Image
+          src={urlFor(post.image).url()}
+          alt={post.title}
+          width={900}
+          height={800}
+          priority
+          className="mx-auto mt-6 rounded-lg border"
+        />
 
-      <Avatar author={post.author} publishedAt={post.publishedAt} />
+        <Avatar author={post.author} publishedAt={post.publishedAt} />
 
-      <div className="prose-lg prose-yellow mb-12 mt-4 dark:prose-invert prose-headings:text-2xl prose-headings:font-bold prose-a:text-primary prose-a:underline prose-li:marker:text-primary">
-        <PortableText value={post.body} />
+        <div className="prose-lg prose-yellow mb-12 mt-4 dark:prose-invert prose-headings:text-2xl prose-headings:font-bold prose-a:text-primary prose-a:underline prose-li:marker:text-primary">
+          <PortableText value={post.body} />
+        </div>
+
+        <CommentSection />
       </div>
-
-      <CommentSection />
     </div>
   );
 }

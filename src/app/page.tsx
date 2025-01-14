@@ -2,6 +2,7 @@ import { ShortPost } from '@/lib/interface';
 import { client } from '@/sanity/lib/client';
 import PostCard from '@/components/post-card';
 import { Metadata } from 'next';
+import Head from 'next/head';
 
 async function getData() {
   const query = `
@@ -38,10 +39,15 @@ export default async function Home() {
   const data: ShortPost[] = await getData();
 
   return (
-    <div className="my-6 grid grid-cols-1 gap-5 overflow-hidden p-8 md:grid-cols-2">
-      {data.map((post, idx) => (
-        <PostCard key={idx} post={post} />
-      ))}
+    <div>
+      <Head>
+        <link rel="canonical" href="https://www.alfeizahav.blog" />
+      </Head>
+      <div className="my-6 grid grid-cols-1 gap-5 overflow-hidden p-8 md:grid-cols-2">
+        {data.map((post, idx) => (
+          <PostCard key={idx} post={post} />
+        ))}
+      </div>
     </div>
   );
 }
