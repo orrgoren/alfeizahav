@@ -21,6 +21,8 @@ export default function CommentBox({ text, setText, onSubmit }: CommentFormProps
             placeholder="כתיבת תגובה לפוסט זה..."
             onChange={(e) => setText(() => e.target.value)}
             value={text}
+            name="message"
+            required
           ></Textarea>
           <div className="mt-4 flex flex-row items-center justify-center gap-2">
             <Button variant="default">פרסום</Button>
