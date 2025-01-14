@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { urlFor } from '@/sanity/lib/image';
 import { PortableText } from '@portabletext/react';
 import Avatar from '@/components/avatar';
+import CommentSection from '@/components/comment-section';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -76,6 +77,8 @@ export default async function BlogPost({ params }: Props) {
       <div className="prose-lg prose-yellow mb-12 mt-4 dark:prose-invert prose-headings:text-2xl prose-headings:font-bold prose-a:text-primary prose-a:underline prose-li:marker:text-primary">
         <PortableText value={post.body} />
       </div>
+
+      <CommentSection />
     </div>
   );
 }

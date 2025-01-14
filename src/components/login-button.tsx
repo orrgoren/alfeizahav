@@ -20,10 +20,10 @@ export default function LoginButton() {
     return (
       <Menubar>
         <MenubarMenu>
-          <MenubarTrigger>שלום, {session.user?.name}</MenubarTrigger>
+          <MenubarTrigger>שלום 👋🏻, {session.user?.name}</MenubarTrigger>
           <MenubarContent>
             <MenubarItem>
-              <MenubarShortcut>⌘P</MenubarShortcut> פרופיל
+              <MenubarShortcut>⌘I</MenubarShortcut> פרופיל
             </MenubarItem>
             <MenubarSeparator />
             <MenubarItem onClick={() => signOut()}>התנתק</MenubarItem>
