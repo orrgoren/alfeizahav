@@ -5,12 +5,8 @@ import { randomUUID } from 'crypto';
 import redis from '../../lib/redis';
 
 export async function POST(req: NextRequest) {
-  const secret = process.env.NEXTAUTH_SECRET;
-  const token = await getToken({
-    req,
-    secret: secret,
-    cookieName: 'next-auth.session-token',
-  });
+  // const secret = process.env.NEXTAUTH_SECRET;
+  const token = await getToken({ req });
 
   if (!token) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
