@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { headers } from 'next/headers';
 import redis from '../../lib/redis';
 
-export async function GET(_req: NextRequest, _res: NextResponse) {
+export async function GET(_req: NextRequest) {
   if (!redis) {
     return NextResponse.json({ error: 'Redis connection failed' }, { status: 500 });
   }

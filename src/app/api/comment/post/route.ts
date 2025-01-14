@@ -4,7 +4,7 @@ import { headers } from 'next/headers';
 import { randomUUID } from 'crypto';
 import redis from '../../lib/redis';
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const secret = process.env.NEXTAUTH_SECRET;
   const token = await getToken({
     req,
