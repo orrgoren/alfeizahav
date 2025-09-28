@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/utils";
 
-const WEBSITE_URL = process.env.WEBSITE_URL || "https://alfeizahav.blog";
+const WEBSITE_URL = process.env.WEBSITE_URL || "https://www.alfeizahav.blog";
 
 type CHANGE_FREQ =
   | "always"
