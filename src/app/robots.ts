@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: ['/'],
       disallow: ['/search?q=', '/admin/', '/api/'],
     },
-    sitemap: ['https://alfeizahav.blog/sitemap.xml'],
+    sitemap: ['https://www.alfeizahav.blog/sitemap.xml'],
   };
 }
